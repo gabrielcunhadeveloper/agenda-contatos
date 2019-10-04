@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    debugShowCheckedModeBanner: true,
+    debugShowCheckedModeBanner: false,
     title: 'Agenda de Contatos',
     theme: ThemeData(
       primarySwatch: Colors.red,
@@ -11,3 +11,5 @@ void main() {
     home: HomePage(title: "Agenda de contatos"),
   ));
 }
+
+
