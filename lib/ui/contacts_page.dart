@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:agenda_contatos/helpers/contact_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+enum OrderOptions {orderAZ, orderZA}
 
 class ContactPage extends StatefulWidget {
   final Contact contact;
@@ -46,6 +49,8 @@ class _ContactPageState extends State<ContactPage> {
           backgroundColor: Colors.red,
           title: Text(_editedContact.name ?? "Novo Contato"),
           centerTitle: true,
+          actions: <Widget>[
+          ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -75,6 +80,14 @@ class _ContactPageState extends State<ContactPage> {
                     ),
                   ),
                 ),
+                onTap: () {
+                  ImagePicker.pickImage(source: ImageSource.camera).then((file){
+                    if (file == null) return;
+                    setState(() {
+                      _editedContact.img = file.path;
+                    });
+                  });
+                },
               ),
               TextField(
                 focusNode: _nameFocus,
