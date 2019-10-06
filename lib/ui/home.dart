@@ -98,22 +98,22 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(top: 10.0),
+                padding: EdgeInsets.only(top: 10.0, left: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       contacts[index].name ?? "",
                       style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                          fontSize: 20.0, fontWeight: FontWeight.normal),
                     ),
                     Text(
                       contacts[index].email ?? "",
-                      style: TextStyle(fontSize: 16.0),
+                      style: TextStyle(fontSize: 16.0, color: Colors.grey),
                     ),
                     Text(
                       contacts[index].phone ?? "",
-                      style: TextStyle(fontSize: 16.0),
+                      style: TextStyle(fontSize: 16.0, color: Colors.grey),
                     ),
                   ],
                 ),
@@ -175,9 +175,9 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(color: Colors.red, fontSize: 18.0),
                         ),
                         onPressed: () {
+                          helper.deleteContact(contacts[index].id);
                           setState(() {
-                            helper.deleteContact(contacts[index].id);
-                            contacts.removeAt(contacts[index].id);
+                            contacts.removeAt(index);
                             Navigator.pop(context);
                           });
                         },
