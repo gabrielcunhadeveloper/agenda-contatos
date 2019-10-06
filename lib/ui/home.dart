@@ -44,6 +44,21 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         centerTitle: true,
+        actions: <Widget>[
+          PopupMenuButton<OrderOptions>(
+            itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
+              const PopupMenuItem<OrderOptions>(
+                child: Text("Odernar de A a Z"),
+                value: OrderOptions.orderAZ,
+              ),
+              const PopupMenuItem<OrderOptions>(
+                child: Text("Odernar de Z a A"),
+                value: OrderOptions.orderZA,
+              )
+            ],
+            onSelected: _orderList,
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -78,6 +93,7 @@ class _HomePageState extends State<HomePage> {
                     image: contacts[index].img != null
                         ? FileImage(File(contacts[index].img))
                         : AssetImage("images/person.png"),
+                    fit: BoxFit.cover
                   ),
                 ),
               ),
@@ -196,6 +212,24 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         contacts = list;
       });
+    });
+  }
+
+  void _orderList(OrderOptions result) {
+    switch(result) {
+      case OrderOptions.orderAZ:
+        contacts.sort((a, b) {
+          return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+        });
+        break;
+      case OrderOptions.orderZA:
+        contacts.sort((a, b) {
+          return b.name.toLowerCase().compareTo(a.name.toLowerCase());
+        });
+        break;
+    }
+    setState(() {
+
     });
   }
 }

@@ -49,8 +49,6 @@ class _ContactPageState extends State<ContactPage> {
           backgroundColor: Colors.red,
           title: Text(_editedContact.name ?? "Novo Contato"),
           centerTitle: true,
-          actions: <Widget>[
-          ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -77,6 +75,7 @@ class _ContactPageState extends State<ContactPage> {
                       image: _editedContact.img != null
                           ? FileImage(File(_editedContact.img))
                           : AssetImage("images/person.png"),
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
@@ -156,4 +155,6 @@ class _ContactPageState extends State<ContactPage> {
     }
 
   }
+
+
 }
